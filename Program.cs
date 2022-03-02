@@ -9,8 +9,11 @@ namespace TrainingApp
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Numbers divide by 5: "+string.Join(", ", GetValDiv(5,1,100)));
-            Console.WriteLine("Numbers divide by 10: "+string.Join(", ", GetValDivV2(10, 1, 100)));
+            //Console.WriteLine("Numbers divide by 5: "+string.Join(", ", GetValDiv(5,1,100)));
+            //Console.WriteLine("Numbers divide by 10: "+string.Join(", ", GetValDivV2(10, 1, 100)));
+            int[] ToSort = { 10, 30, 19, 15, 1, 2, 3 };
+            BubbleSort(ToSort);
+            Console.WriteLine(string.Join(", ",ToSort));
             Console.ReadLine();
         }
 
@@ -59,10 +62,10 @@ namespace TrainingApp
         {
             int size = Array.Length;
             int swapped = 0;
-            for(int i=0; i<= size-1; ++i)
+            for(int i=0; i< size-1; ++i)
             {
                 swapped = 0;
-                for(int j=0; j<=size-i-1; ++j)
+                for(int j=0; j<size-i-1; ++j)
                 {
                     if (Array[j] < Array[j + 1])
                     {
