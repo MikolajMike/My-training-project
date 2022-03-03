@@ -5,15 +5,16 @@ namespace TrainingApp
 {
     class Program
     {
-        private static int i = 0;
 
         static void Main(string[] args)
         {
             //Console.WriteLine("Numbers divide by 5: "+string.Join(", ", GetValDiv(5,1,100)));
             //Console.WriteLine("Numbers divide by 10: "+string.Join(", ", GetValDivV2(10, 1, 100)));
-            int[] ToSort = { 10, 30, 19, 15, 1, 2, 3 };
-            BubbleSort(ToSort);
-            Console.WriteLine(string.Join(", ",ToSort));
+            int[] toSort = { 10, 30, 19, 15, 1, 2, 3 };
+            BubbleSort(toSort);
+            Console.WriteLine(string.Join(", ",toSort));
+            Console.WriteLine(string.Join(", ", ChangeNameOfDivVal(3, 1, 100, "Fuzz")));
+
             Console.ReadLine();
         }
 
@@ -58,19 +59,19 @@ namespace TrainingApp
         /// Sort method N(N-1)
         /// </summary>
         /// <param name="Array"></param>
-        static void BubbleSort(int[] Array)
+        static void BubbleSort(int[] array)
         {
-            int size = Array.Length;
+            int size = array.Length;
             int swapped = 0;
             for(int i=0; i< size-1; ++i)
             {
                 swapped = 0;
                 for(int j=0; j<size-i-1; ++j)
                 {
-                    if (Array[j] < Array[j + 1])
+                    if (array[j] < array[j + 1])
                     {
                         swapped = 1;
-                        Swap(ref Array[j], ref Array[j + 1]);
+                        Swap(ref array[j], ref array[j + 1]);
                     }
                 }
                 if (swapped == 0) break;
@@ -84,21 +85,38 @@ namespace TrainingApp
         /// <param name="StartNr"></param>
         /// <param name="EndNr"></param>
         /// <returns></returns>
-        static IEnumerable<int> GetValDiv(int DivideBy, int StartNr, int EndNr)
+        static IEnumerable<int> GetValDiv(int divideBy, int startNr, int endNr)
         {
-            for(int i=StartNr; i<=EndNr; i++)
+            for(int i=startNr; i<=endNr; i++)
             {
-                if(i % DivideBy == 0) yield return i; 
+                if(i % divideBy == 0) yield return i; 
             }
         }
-        static List<int> GetValDivV2(int DivideBy, int StartNr, int EndNr)
+        static List<int> GetValDivV2(int divideBy, int startNr, int endNr)
         {
             var result = new List<int>();
-            for (int i = StartNr; i <= EndNr; i++)
+            for (int i = startNr; i <= endNr; i++)
             {
-                if (i % DivideBy == 0) result.Add(i);
+                if (i % divideBy == 0) result.Add(i);
             }
             return result;
+        }
+
+        /// <summary>
+        /// Change the divided value to any name
+        /// </summary>
+        /// <param name="divideBy"></param>
+        /// <param name="startNr"></param>
+        /// <param name="endNr"></param>
+        /// <param name="changeTo"></param>
+        /// <returns></returns>
+        static IEnumerable<string> ChangeNameOfDivVal(int divideBy, int startNr, int endNr, string changeTo)
+        {
+            for(int i=startNr; i<=endNr; i++)
+            {
+                if (i % divideBy == 0) yield return changeTo;
+                else yield return Convert.ToString(i); 
+            }
         }
 
     }
