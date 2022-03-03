@@ -14,8 +14,9 @@ namespace TrainingApp
             BubbleSort(toSort);
             Console.WriteLine(string.Join(", ",toSort));
             Console.WriteLine(string.Join(", ", ChangeNameOfDivVal(3, 1, 100, "Fuzz")));
+            Console.WriteLine(GetDistReso(72, (float)1/10, Math.PI));
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         /// <summary>
@@ -119,5 +120,9 @@ namespace TrainingApp
             }
         }
 
+        static double GetDistReso(double diameter, double gearRatio, double Pi)
+        {
+            return diameter * gearRatio * Pi;
+        }
     }
 }
