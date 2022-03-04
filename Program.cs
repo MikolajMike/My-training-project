@@ -10,12 +10,61 @@ namespace TrainingApp
         {
             //Console.WriteLine("Numbers divide by 5: "+string.Join(", ", GetValDiv(5,1,100)));
             //Console.WriteLine("Numbers divide by 10: "+string.Join(", ", GetValDivV2(10, 1, 100)));
-            int[] toSort = { 10, 30, 19, 15, 1, 2, 3 };
-            BubbleSort(toSort);
-            Console.WriteLine(string.Join(", ",toSort));
-            Console.WriteLine(string.Join(", ", ChangeNameOfDivVal(3, 1, 100, "Fuzz")));
-            Console.WriteLine(GetDistReso(72, (float)1/10, Math.PI));
+            //int[] toSort = { 10, 30, 19, 15, 1, 2, 3 };
+            //BubbleSort(toSort);
+            //Console.WriteLine(string.Join(", ",toSort));
+            //Console.WriteLine(string.Join(", ", ChangeNameOfDivVal(3, 1, 100, "Fuzz")));
+            //Console.WriteLine(GetDistReso(72, (float)1/10, Math.PI));
 
+            selMethod methToChoose = new selMethod();
+            Console.WriteLine("Select method u want to use:");
+            for (int i = 1; i < Enum.GetNames(typeof(selMethod)).Length; i++)
+            {
+                Console.WriteLine($"{i}. Choose method {methToChoose = (selMethod)i}"); // can change to Enum.GetNames(typeof(selMethod)).GetValue(i)
+            }
+            selMethod selMeth = (selMethod)Enum.Parse(typeof(selMethod), Console.ReadLine());
+
+            switch (selMeth)
+            {
+                case selMethod.fib:
+                    Console.WriteLine("Type the fib number:");
+                    Console.WriteLine(fid(Convert.ToInt32(Console.ReadLine())));
+                    break;
+                case selMethod.pow:
+                    int baseNum, powNum;
+                    Console.WriteLine("Type the number u want to pow:");
+                    Console.WriteLine("Type base number");
+                    baseNum = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Type pow number");
+                    powNum = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine(Convert.ToString(pow(baseNum,powNum)));
+                    break;
+                case selMethod.swap:
+                    int firstNumber, secondNumber;
+                    Console.WriteLine("Swap position of two numeric value");
+                    Console.WriteLine("Type first number:");
+                    firstNumber = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Type second number:");
+                    secondNumber = Convert.ToInt32(Console.ReadLine());
+                    Swap(ref firstNumber, ref secondNumber);
+                    Console.WriteLine($"First number value: {firstNumber}, Second number value: {secondNumber}");
+                    break;
+                case selMethod.bubbleSort:
+                    break;
+                case selMethod.getValDiv:
+                    break;
+                case selMethod.getValDiv2:
+                    break;
+                case selMethod.changeNameOfDivVal:
+                    break;
+                case selMethod.getDistReso:
+                    break;
+                default:
+                    Console.WriteLine("Type wrong method number. Type again:");
+                    Main(args);
+                break;
+            }
+                
             //Console.ReadLine();
         }
 
@@ -120,9 +169,31 @@ namespace TrainingApp
             }
         }
 
+        /// <summary>
+        /// Calculate the distance resolution
+        /// </summary>
+        /// <param name="diameter"></param>
+        /// <param name="gearRatio"></param>
+        /// <param name="Pi"></param>
+        /// <returns></returns>
         static double GetDistReso(double diameter, double gearRatio, double Pi)
         {
             return diameter * gearRatio * Pi;
         }
+
+        //static int CheckIfValIsNum(string Value)
+        //{
+        //    if (int.TryParse(Value, out int result))
+        //    {
+        //        return result;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Typed value is not a number");
+        //        return 9999;
+        //    }
+        //
+        //
+        //}
     }
 }
