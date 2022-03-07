@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Collections;
 
 namespace TrainingApp
 {
@@ -7,14 +9,8 @@ namespace TrainingApp
     {
 
         static void Main(string[] args)
-        {
-            //Console.WriteLine("Numbers divide by 5: "+string.Join(", ", GetValDiv(5,1,100)));
-            //Console.WriteLine("Numbers divide by 10: "+string.Join(", ", GetValDivV2(10, 1, 100)));
-            //int[] toSort = { 10, 30, 19, 15, 1, 2, 3 };
-            //BubbleSort(toSort);
-            //Console.WriteLine(string.Join(", ",toSort));
-            //Console.WriteLine(string.Join(", ", ChangeNameOfDivVal(3, 1, 100, "Fuzz")));
-            //Console.WriteLine(GetDistReso(72, (float)1/10, Math.PI));
+        { 
+
 
             selMethod methToChoose = new selMethod();
             Console.WriteLine("Select method u want to use:");
@@ -23,7 +19,7 @@ namespace TrainingApp
                 Console.WriteLine($"{i}. Choose method {methToChoose = (selMethod)i}"); // can change to Enum.GetNames(typeof(selMethod)).GetValue(i)
             }
             selMethod selMeth = (selMethod)Enum.Parse(typeof(selMethod), Console.ReadLine());
-
+            
             switch (selMeth)
             {
                 case selMethod.fib:
@@ -64,7 +60,7 @@ namespace TrainingApp
                     Main(args);
                 break;
             }
-                
+
             //Console.ReadLine();
         }
 
@@ -195,5 +191,38 @@ namespace TrainingApp
         //
         //
         //}
+
+
+            static int[] TwoSum(int[] nums, int target)
+            {
+                int size = nums.Length;
+                int[] result = new int[2];
+                for (int i = 0; i < size - 1; i++)
+                {
+                    for (int j = i + 1; j <= size - 1; j++)
+                    {
+                        if ((nums[i] + nums[j]) == target)
+                        {
+                            return new int[] {i, j};   
+                        }
+                    }
+                }
+                return result;
+            }
+
+            static int[] TwoSum2(int[] nums, int target)
+            {
+                Hashtable sumInt = new Hashtable();
+
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    int complement = target - nums[i];
+                    if (sumInt.ContainsKey(complement))
+                        return new int[] { (int)sumInt[complement], i };
+                    if (!(sumInt.ContainsKey(nums[i]))) 
+                        sumInt.Add(nums[i], i);
+                }
+                return new int[0];
+            }
     }
 }
